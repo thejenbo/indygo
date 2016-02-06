@@ -1,0 +1,403 @@
+// Import Theme
+@import '../themes/happy-v1.0';
+
+body {
+	@include transition(all, 500ms, linear);
+	background: #000 url('../../assets/img/car-ride-bg.jpg'); 
+	background-attachment: fixed;
+	background-size: cover;
+	&[state="results.list"], &[state="results.dog"], &[state="results.loading"] {
+		background: #FFF;
+		header {
+			button {
+				display: block;
+			}
+			a {
+				color: #000;
+				display: block;
+				font-size: em(70);
+				margin: 0;
+				text-align: center;
+			}
+		}
+	}
+	&[state="home"], &[state="search"] {
+		position: fixed;
+		header {
+			padding-top: 10px;
+			a {
+				margin-left: 60px;
+			}
+		}
+	}
+}
+
+header {
+	button {
+		border: none;
+		color: #000;
+		display: none;
+		left: 20px;
+		position: absolute;
+		top: 15px;
+		width: 80px;
+		span.text {
+			left: 7px;
+		}
+		&:hover {
+			span {
+				left: 0;
+			}
+		}
+		&:active {
+			left: 21px;
+			position: absolute;
+			top: 16px;
+		}
+	}
+	a {
+		color: #000;
+		cursor: pointer;
+		font: 700 em(90) 'Damion', sans-serif;
+		margin: 0 20px 20px 20px;
+		text-decoration: none;
+	}
+}
+
+section#main {
+	section#start-search {
+		width: 700px;
+		padding: 0 30px 0 60px;
+		h2 {
+			margin: 30px 0;
+		}
+		button {
+			margin-top: 10px;
+			span.text {
+				left: 25px;
+			}
+			&:hover {
+				span {
+					left: 0;
+				}
+			}
+		}
+	}
+	section#search {
+		padding: 0 30px 0 60px;
+		form {
+			width: 555px;
+			.styled-select, .styled-input {
+				input[name=breed] {
+					margin-right: 20px;
+					width: 220px;
+				}
+				ul.breed-list {
+					display: none;
+					height: 190px;
+					margin: 0;
+					padding: 0;
+					position: absolute;
+					overflow: scroll;
+					top: 215px;
+					width: 232px;
+					z-index: 2;
+					li {
+						background: #FFF;
+						border-bottom: 1px solid #000;
+						color: #000;
+						font: em(14) 'Quicksand';
+						list-style: none;
+						padding: 10px 5px;
+						text-align: center;
+
+						&:hover {
+							background: #000;
+							color: #FFF;
+						}
+					}
+				}
+			}
+			.select-range {
+				float: right;
+				width: 265px;
+			}
+			.select-range, input[name=zipcode] {
+				margin-bottom: 0;
+			}
+			.select-age {
+				margin-right: 10px;
+				width: 140px
+			}
+			.select-gender {
+				width: 150px;
+			}
+			button {
+				float: left;
+				margin-top: 20px;
+				span.text {
+					left: 3px;
+				}
+				&:hover {
+					span.text {
+						left: -3px;
+					}
+				}
+			}
+		}
+	}
+	section#results {
+		top: 70px;
+		button {
+			border: none;
+			color: #000;
+			height: 30px;
+			line-height: em(20);
+			left: 20px;
+			position: relative;
+			width: 80px;
+			span.text {
+				left: 7px;
+			}
+			&:hover {
+				span {
+					left: 0;
+				}
+			}
+		}
+		#loading-wrap, .not-found {
+			//display: none;
+			height: 100%;
+			width: 100%;
+			h3 {
+				color: #000;
+				font: em(50) 'Quicksand';
+				margin: auto;
+				text-align: center;
+				text-transform: lowercase;
+				width: 60%;
+				span {
+					width: auto;
+					position: absolute;
+				}
+			}
+		}
+		#dog-results {
+			margin: auto;
+			#results-wrap {
+				display: none;	
+				-webkit-column-count: 4;
+    			-webkit-column-gap: 2%;	
+    			*, *:before, *:after {
+    				box-sizing:  border-box;
+    			}		
+				.dog-container {
+					cursor: pointer;
+					margin: 4%;
+					width: 25%;
+				    display: inline-block;
+				    margin: 0 0 1em;
+				    position: relative;
+				    width: 100%;
+					.img-wrap {
+						height: 100%;
+						margin: auto;
+						position: relative;
+						width: 100%;
+						.dog-img {
+							display: block;
+							margin: auto;
+							max-width: 100%;
+						}
+						.dog-info {
+							@include transition(all, 500ms, linear);
+							background: #000;
+							background: rgba(0, 0, 0, .8);
+							min-width: 100%;
+							position: absolute;
+							top: 100%;
+							left: 0;
+							right: 0;
+							bottom: 0;
+							h3, span {
+								color: #FFF;
+								font: em(28) 'Quicksand';
+								margin: 0;
+								text-align: center;
+							}
+							h3 {
+								border-bottom: 2px solid #FFF;
+								margin-top: 20px;
+								padding-bottom: 5px;
+							}
+							span {
+								display: block;
+								font-size: em(25);
+								margin-top: 10px;
+								&.dog-sex {
+									&::before {
+										content: "";
+										display: inline-block;
+										height: 27px;
+										margin-right: 7px;
+										position: relative;
+										top: 2px;
+										width: 28px;
+									}
+									&.female {
+										&::before {
+											background: url('../../assets/img/sex-female.svg');
+											width: 19px;
+										}
+									}
+									&.male {
+										&::before {
+											background: url('../../assets/img/sex-male.svg');
+											width: 28px;
+										}
+									}
+								}
+								&.dog-location {
+									&::before {
+										background: url('../../assets/img/location-pin.svg');
+										content: "";
+										display: inline-block;
+										height: 27px;
+										margin-right: 7px;
+										width: 16px;
+										position: relative;
+										top: 2px;
+									}
+								}
+							}
+						}
+					}
+					&:hover {
+						.img-wrap {
+							.dog-info {
+								top: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		#focused-dog {
+			border: 5px solid #000;
+			overflow: hidden;
+			margin: 0 auto 60px;
+			max-width: 1100px;
+			top: 70px;
+			left: 0;
+			right: 0;
+			padding: 30px;
+			width: 90%;
+			.img-wrap {
+				float: left;
+				max-width: 37%;
+				width: 100%;
+				img {
+					max-height: 500px;
+					width: 100%;
+				}
+			}
+			.dog-details {
+				float: right;
+				margin-left: 2%;
+				width: 57%;
+				h3 {
+					color: #000;
+					font: bold em(50) 'Quicksand';
+					margin: 0 0 10px 0;
+					text-align: left;
+				}
+				h5 {
+					margin: 0 0 10px 0;
+				}
+				.dog-description {
+					font: em(16) 'Quicksand'!important;
+					height: 200px;
+					overflow-y: scroll;
+				}
+			}
+		}
+	}
+}
+
+//ANIMATIONS
+section#main section {
+	position: absolute;
+}
+
+#focused-dog, #dog-results {
+	width: 90%;
+}
+
+.animate-switch.ng-animate, .animate-push.ng-animate {
+  -webkit-transition: 1s all;
+  -moz-transition: 1s all;
+  -o-transition: 1s all;
+  transition: 1s all;
+}
+
+.animate-switch {
+
+	&.ng-leave.ng-leave-active,
+	&.ng-enter {
+	  -webkit-transform: translate(-999px, 0);
+	  -moz-transform: translate(-999px, 0);
+	  -ms-transform: translate(-999px, 0);
+	  -o-transform: translate(-999px, 0);
+	  transform: translate(-999px, 0);
+	}
+
+	&.ng-leave,
+	&.ng-enter.ng-enter-active {
+	  -webkit-transform: translate(0, 0);
+	  -moz-transform: translate(0, 0);
+	  -ms-transform: translate(0, 0);
+	  -o-transform: translate(0, 0);
+	  transform: translate(0, 0);
+	}
+}
+
+.animate-push {
+
+	&.ng-leave {
+		-webkit-transform: translate(0, 0);
+		-moz-transform: translate(0, 0);
+		-ms-transform: translate(0, 0);
+		-o-transform: translate(0, 0);
+		transform: translate(0, 0);
+		opacity: 1;
+	}
+
+	&.ng-enter {
+		-webkit-transform: translate(1200px, 0);
+		-moz-transform: translate(1200px, 0);
+		-ms-transform: translate(1200px, 0);
+		-o-transform: translate(1200px, 0);
+		transform: translate(1200px, 0);
+		opacity: 0;
+	}
+
+	&.ng-leave.ng-leave-active {
+	  -webkit-transform: translate(-1200px, 0);
+	  -moz-transform: translate(-1200px, 0);
+	  -ms-transform: translate(-1200px, 0);
+	  -o-transform: translate(-1200px, 0);
+	  transform: translate(-1200px, 0);
+	  opacity: 0;
+	}
+
+	&.ng-enter.ng-enter-active {
+	  -webkit-transform: translate(0, 0);
+	  -moz-transform: translate(0, 0);
+	  -ms-transform: translate(0, 0);
+	  -o-transform: translate(0, 0);
+	  transform: translate(0, 0);
+	  opacity: 1;
+	}
+
+}

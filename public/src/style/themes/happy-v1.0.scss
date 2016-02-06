@@ -1,0 +1,142 @@
+// RESCUE APP CSS THEME
+// HAPPY THEME V1.0
+
+// Import Mixins
+@import '_mixins';
+
+/////// RESET //////
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+section, header {
+	width: 100%;
+}
+
+section {
+	@include box-sizing(border-box);
+	position: relative;
+}
+
+////// TYPOGRAPHY //////
+
+// Import Fonts
+@import url(https://fonts.googleapis.com/css?family=Quicksand);
+@import url(https://fonts.googleapis.com/css?family=Damion);
+
+// Default Font Styles
+h1 {
+	color: #000;
+	font: 700 em(90) 'Damion', sans-serif;
+}
+
+h2 {
+	color: #000;
+	font: 100 em(64) 'Quicksand', sans-serif;
+}
+
+h3 {
+	font: em(30) 'Bebas', sans-serif;
+	text-align: center;
+}
+
+h5 {
+	font: em(22) 'Quicksand', sans-serif;
+}
+
+p {
+	font: 100 em(14) 'Quicksand', sans-serif;
+}
+
+////// FORM ELEMENTS //////
+
+form {
+	&.ng-dirty {
+		.ng-invalid {
+			border: 1px solid red;
+		}
+	}
+	.styled-select, .styled-input {
+		height: 90px;
+		margin-top: 20px;
+		overflow: hidden;
+		&.left {
+			float: left;
+		}
+		&.right {
+			float: right;
+		}
+		label {
+			color: #000;
+			cursor: default;
+			float: left;
+			font: em(20) 'Quicksand', sans-serif;
+		}
+		input, select {
+			background: transparent;
+			border: 1px solid #000;
+			color: #000;
+			font: em(20) 'Quicksand', sans-serif;
+			height: 60px;
+			text-indent: 10px;
+			&:focus {
+				outline: none;
+			}
+		}
+		select {
+			appearance: none;
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			background: url('../img/arrow.svg') no-repeat 90% center;
+			background-size: 35px 35px;
+			border-radius: 0;
+			width: 90%;
+		}
+		input {
+			clear: both;
+			float: left;
+			width: 253px;
+		}
+		button {
+			margin-top: 40px;
+		}
+	}
+}
+
+button {
+	background: transparent;
+	border: 1px solid #000;
+	color: #000;
+	font: em(50) 'Quicksand', sans-serif;
+	overflow: hidden;
+	padding: 5px 10px;
+	position: relative;
+	width: 220px;
+	span {
+		position: relative;
+		-moz-transition: .5s left;
+		-o-transition: .5s left;
+		-webkit-transition: .5s left;
+		transition: .5s left;
+	}
+	span.text {
+		left: 30px;
+	}
+	span.arrow {
+		left: 70px;
+	}
+	&:hover {
+		span {
+			left: -1px;
+		}
+	}
+	&:active {
+		left: 1px;
+		top: 1px;
+	}
+	&:focus {
+		outline: none;
+	}
+}

@@ -1,0 +1,46 @@
+<section id="search">
+	<form name="dogSearch" novalidate ng-submit="dogSearch.$setDirty(); dogSearch.$valid && searchInit();" autocomplete="off">
+		<div class="styled-input left">
+			<label for="zipcode">zipcode</label>
+			<input type="text" name="zipcode" ng-minlength="5" ng-maxlength="5" pattern="\d*" placeholder="e.g. 90210" ng-model="user.zipcode" required>
+		</div>
+		<div class="styled-select select-range">
+			<label for="range">search range</label>
+			<select name="range" ng-model="user.range">
+				<option value="10">10 Miles</option>
+				<option value="20">20 Miles</option>
+				<option value="50" ng-selected="50">50 Miles</option>
+				<option value="75">75 Miles</option>
+				<option value="100">100 Miles</option>
+				<option value="200">200 Miles</option>
+				<option value="">Any Distance</option>
+			</select>
+		</div>
+		<div class="styled-input left">
+			<label for="breed">breed</label>
+			<input name="breed" type="text" ng-model="user.breed" placeholder="Any" ng-focus="showList();" ng-blur="hideList();">
+			<ul class="breed-list">
+				<li ng-repeat="breed in breeds | array | filter : { 'species' : 'Dog', 'name' : user.breed }" ng-click="getBreed();">{{ breed.name }}</li>
+			</ul>
+		</div>
+		<div class="styled-select select-age left">
+			<label for="age">age</label>
+			<select name="age" ng-model="user.age">
+				<option value="" ng-selected="">Any</option>
+				<option value="baby" name="puppy">Puppy</option>
+				<option value="young" name="young">Young</option>
+				<option value="adult" name="adult">Adult</option>
+				<option value="senior" name="senior">Senior</option>
+			</select>
+		</div>
+		<div class="styled-select select-gender left">
+			<label for="gender">m/f</label>
+			<select name="gender" ng-model="user.gender">
+				<option value="" ng-selected="">Both</option>
+				<option value="male" name="male">Male</option>
+				<option value="female" name="female">Female</option>
+			</select>
+		</div>
+		<button type="submit"><span class="text">search</span><span class="arrow">!</span></button>
+	</form>
+</section>

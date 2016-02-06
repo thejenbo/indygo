@@ -1,0 +1,29 @@
+<div id="dog-results" class="animate-push-left">
+
+	<div ng-if="keys(dogResults).length" id="results-wrap">
+
+		<div class="dog-container" ng-class="{{ dog.animalID }}" ng-repeat="dog in dogResults" ng-click="getDog($event);" on-last-repeat>
+
+			<div class="img-wrap">
+
+				<img class="dog-img" ng-class="{{ dog.animalOrgID }}" ng-src="{{ dog.animalPictures[0].urlInsecureFullsize }}">
+
+				<div class="dog-info">
+					<h3 class="dog-name">{{ dog.animalName }}</h3>
+					<span class="dog-age">{{ dog.generalAge }}</span>
+					<span class="dog-sex female" ng-if="dog.animalSex === 'Female'">Female</span>
+					<span class="dog-sex male" ng-if="dog.animalSex === 'Male'">Male</span>
+					<span class="dog-location">{{ dog.animalLocation }}</span>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div ng-if="!keys(dogResults).length" class="not-found">
+		<h3>sorry, no results were found :(</h3>
+	</div>
+
+</div>

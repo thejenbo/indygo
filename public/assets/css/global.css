@@ -1,0 +1,402 @@
+@import url(https://fonts.googleapis.com/css?family=Quicksand);
+@import url(https://fonts.googleapis.com/css?family=Damion);
+html, body {
+  margin: 0;
+  padding: 0; }
+
+section, header {
+  width: 100%; }
+
+section {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative; }
+
+h1 {
+  color: #000;
+  font: 700 5.625em "Damion", sans-serif; }
+
+h2 {
+  color: #000;
+  font: 100 4em "Quicksand", sans-serif; }
+
+h3 {
+  font: 1.875em "Bebas", sans-serif;
+  text-align: center; }
+
+h5 {
+  font: 1.375em "Quicksand", sans-serif; }
+
+p {
+  font: 100 0.875em "Quicksand", sans-serif; }
+
+form.ng-dirty .ng-invalid {
+  border: 1px solid red; }
+
+form .styled-select, form .styled-input {
+  height: 90px;
+  margin-top: 20px;
+  overflow: hidden; }
+  form .styled-select.left, form .styled-input.left {
+    float: left; }
+  form .styled-select.right, form .styled-input.right {
+    float: right; }
+  form .styled-select label, form .styled-input label {
+    color: #000;
+    cursor: default;
+    float: left;
+    font: 1.25em "Quicksand", sans-serif; }
+  form .styled-select input, form .styled-select select, form .styled-input input, form .styled-input select {
+    background: transparent;
+    border: 1px solid #000;
+    color: #000;
+    font: 1.25em "Quicksand", sans-serif;
+    height: 60px;
+    text-indent: 10px; }
+    form .styled-select input:focus, form .styled-select select:focus, form .styled-input input:focus, form .styled-input select:focus {
+      outline: none; }
+  form .styled-select select, form .styled-input select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: url("../img/arrow.svg") no-repeat 90% center;
+    background-size: 35px 35px;
+    border-radius: 0;
+    width: 90%; }
+  form .styled-select input, form .styled-input input {
+    clear: both;
+    float: left;
+    width: 253px; }
+  form .styled-select button, form .styled-input button {
+    margin-top: 40px; }
+
+button {
+  background: transparent;
+  border: 1px solid #000;
+  color: #000;
+  font: 3.125em "Quicksand", sans-serif;
+  overflow: hidden;
+  padding: 5px 10px;
+  position: relative;
+  width: 220px; }
+  button span {
+    position: relative;
+    -moz-transition: .5s left;
+    -o-transition: .5s left;
+    -webkit-transition: .5s left;
+    transition: .5s left; }
+  button span.text {
+    left: 30px; }
+  button span.arrow {
+    left: 70px; }
+  button:hover span {
+    left: -1px; }
+  button:active {
+    left: 1px;
+    top: 1px; }
+  button:focus {
+    outline: none; }
+
+body {
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  transition: all 500ms linear;
+  background: #000 url("../../assets/img/car-ride-bg.jpg");
+  background-attachment: fixed;
+  background-size: cover; }
+  body[state="results.list"], body[state="results.dog"], body[state="results.loading"] {
+    background: #FFF; }
+    body[state="results.list"] header button, body[state="results.dog"] header button, body[state="results.loading"] header button {
+      display: block; }
+    body[state="results.list"] header a, body[state="results.dog"] header a, body[state="results.loading"] header a {
+      color: #000;
+      display: block;
+      font-size: 4.375em;
+      margin: 0;
+      text-align: center; }
+  body[state="home"], body[state="search"] {
+    position: fixed; }
+    body[state="home"] header, body[state="search"] header {
+      padding-top: 10px; }
+      body[state="home"] header a, body[state="search"] header a {
+        margin-left: 60px; }
+
+header button {
+  border: none;
+  color: #000;
+  display: none;
+  left: 20px;
+  position: absolute;
+  top: 15px;
+  width: 80px; }
+  header button span.text {
+    left: 7px; }
+  header button:hover span {
+    left: 0; }
+  header button:active {
+    left: 21px;
+    position: absolute;
+    top: 16px; }
+
+header a {
+  color: #000;
+  cursor: pointer;
+  font: 700 5.625em "Damion", sans-serif;
+  margin: 0 20px 20px 20px;
+  text-decoration: none; }
+
+section#main section#start-search {
+  width: 700px;
+  padding: 0 30px 0 60px; }
+  section#main section#start-search h2 {
+    margin: 30px 0; }
+  section#main section#start-search button {
+    margin-top: 10px; }
+    section#main section#start-search button span.text {
+      left: 25px; }
+    section#main section#start-search button:hover span {
+      left: 0; }
+
+section#main section#search {
+  padding: 0 30px 0 60px; }
+  section#main section#search form {
+    width: 555px; }
+    section#main section#search form .styled-select input[name=breed], section#main section#search form .styled-input input[name=breed] {
+      margin-right: 20px;
+      width: 220px; }
+    section#main section#search form .styled-select ul.breed-list, section#main section#search form .styled-input ul.breed-list {
+      display: none;
+      height: 190px;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      overflow: scroll;
+      top: 215px;
+      width: 232px;
+      z-index: 2; }
+      section#main section#search form .styled-select ul.breed-list li, section#main section#search form .styled-input ul.breed-list li {
+        background: #FFF;
+        border-bottom: 1px solid #000;
+        color: #000;
+        font: 0.875em "Quicksand";
+        list-style: none;
+        padding: 10px 5px;
+        text-align: center; }
+        section#main section#search form .styled-select ul.breed-list li:hover, section#main section#search form .styled-input ul.breed-list li:hover {
+          background: #000;
+          color: #FFF; }
+    section#main section#search form .select-range {
+      float: right;
+      width: 265px; }
+    section#main section#search form .select-range, section#main section#search form input[name=zipcode] {
+      margin-bottom: 0; }
+    section#main section#search form .select-age {
+      margin-right: 10px;
+      width: 140px; }
+    section#main section#search form .select-gender {
+      width: 150px; }
+    section#main section#search form button {
+      float: left;
+      margin-top: 20px; }
+      section#main section#search form button span.text {
+        left: 3px; }
+      section#main section#search form button:hover span.text {
+        left: -3px; }
+
+section#main section#results {
+  top: 70px; }
+  section#main section#results button {
+    border: none;
+    color: #000;
+    height: 30px;
+    line-height: 1.25em;
+    left: 20px;
+    position: relative;
+    width: 80px; }
+    section#main section#results button span.text {
+      left: 7px; }
+    section#main section#results button:hover span {
+      left: 0; }
+  section#main section#results #loading-wrap, section#main section#results .not-found {
+    height: 100%;
+    width: 100%; }
+    section#main section#results #loading-wrap h3, section#main section#results .not-found h3 {
+      color: #000;
+      font: 3.125em "Quicksand";
+      margin: auto;
+      text-align: center;
+      text-transform: lowercase;
+      width: 60%; }
+      section#main section#results #loading-wrap h3 span, section#main section#results .not-found h3 span {
+        width: auto;
+        position: absolute; }
+  section#main section#results #dog-results {
+    margin: auto; }
+    section#main section#results #dog-results #results-wrap {
+      display: none;
+      -webkit-column-count: 4;
+      -webkit-column-gap: 2%; }
+      section#main section#results #dog-results #results-wrap *, section#main section#results #dog-results #results-wrap *:before, section#main section#results #dog-results #results-wrap *:after {
+        box-sizing: border-box; }
+      section#main section#results #dog-results #results-wrap .dog-container {
+        cursor: pointer;
+        margin: 4%;
+        width: 25%;
+        display: inline-block;
+        margin: 0 0 1em;
+        position: relative;
+        width: 100%; }
+        section#main section#results #dog-results #results-wrap .dog-container .img-wrap {
+          height: 100%;
+          margin: auto;
+          position: relative;
+          width: 100%; }
+          section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-img {
+            display: block;
+            margin: auto;
+            max-width: 100%; }
+          section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info {
+            -webkit-transition: all 500ms linear;
+            -moz-transition: all 500ms linear;
+            -ms-transition: all 500ms linear;
+            -o-transition: all 500ms linear;
+            transition: all 500ms linear;
+            background: #000;
+            background: rgba(0, 0, 0, 0.8);
+            min-width: 100%;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            bottom: 0; }
+            section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info h3, section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info span {
+              color: #FFF;
+              font: 1.75em "Quicksand";
+              margin: 0;
+              text-align: center; }
+            section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info h3 {
+              border-bottom: 2px solid #FFF;
+              margin-top: 20px;
+              padding-bottom: 5px; }
+            section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info span {
+              display: block;
+              font-size: 1.5625em;
+              margin-top: 10px; }
+              section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info span.dog-sex::before {
+                content: "";
+                display: inline-block;
+                height: 27px;
+                margin-right: 7px;
+                position: relative;
+                top: 2px;
+                width: 28px; }
+              section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info span.dog-sex.female::before {
+                background: url("../../assets/img/sex-female.svg");
+                width: 19px; }
+              section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info span.dog-sex.male::before {
+                background: url("../../assets/img/sex-male.svg");
+                width: 28px; }
+              section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info span.dog-location::before {
+                background: url("../../assets/img/location-pin.svg");
+                content: "";
+                display: inline-block;
+                height: 27px;
+                margin-right: 7px;
+                width: 16px;
+                position: relative;
+                top: 2px; }
+        section#main section#results #dog-results #results-wrap .dog-container:hover .img-wrap .dog-info {
+          top: 0; }
+  section#main section#results #focused-dog {
+    border: 5px solid #000;
+    overflow: hidden;
+    margin: 0 auto 60px;
+    max-width: 1100px;
+    top: 70px;
+    left: 0;
+    right: 0;
+    padding: 30px;
+    width: 90%; }
+    section#main section#results #focused-dog .img-wrap {
+      float: left;
+      max-width: 37%;
+      width: 100%; }
+      section#main section#results #focused-dog .img-wrap img {
+        max-height: 500px;
+        width: 100%; }
+    section#main section#results #focused-dog .dog-details {
+      float: right;
+      margin-left: 2%;
+      width: 57%; }
+      section#main section#results #focused-dog .dog-details h3 {
+        color: #000;
+        font: bold 3.125em "Quicksand";
+        margin: 0 0 10px 0;
+        text-align: left; }
+      section#main section#results #focused-dog .dog-details h5 {
+        margin: 0 0 10px 0; }
+      section#main section#results #focused-dog .dog-details .dog-description {
+        font: 1em "Quicksand" !important;
+        height: 200px;
+        overflow-y: scroll; }
+
+section#main section {
+  position: absolute; }
+
+#focused-dog, #dog-results {
+  width: 90%; }
+
+.animate-switch.ng-animate, .animate-push.ng-animate {
+  -webkit-transition: 1s all;
+  -moz-transition: 1s all;
+  -o-transition: 1s all;
+  transition: 1s all; }
+
+.animate-switch.ng-leave.ng-leave-active, .animate-switch.ng-enter {
+  -webkit-transform: translate(-999px, 0);
+  -moz-transform: translate(-999px, 0);
+  -ms-transform: translate(-999px, 0);
+  -o-transform: translate(-999px, 0);
+  transform: translate(-999px, 0); }
+
+.animate-switch.ng-leave, .animate-switch.ng-enter.ng-enter-active {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0); }
+
+.animate-push.ng-leave {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+  opacity: 1; }
+
+.animate-push.ng-enter {
+  -webkit-transform: translate(1200px, 0);
+  -moz-transform: translate(1200px, 0);
+  -ms-transform: translate(1200px, 0);
+  -o-transform: translate(1200px, 0);
+  transform: translate(1200px, 0);
+  opacity: 0; }
+
+.animate-push.ng-leave.ng-leave-active {
+  -webkit-transform: translate(-1200px, 0);
+  -moz-transform: translate(-1200px, 0);
+  -ms-transform: translate(-1200px, 0);
+  -o-transform: translate(-1200px, 0);
+  transform: translate(-1200px, 0);
+  opacity: 0; }
+
+.animate-push.ng-enter.ng-enter-active {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+  opacity: 1; }
