@@ -20,7 +20,7 @@
 			<label for="breed">breed</label>
 			<input name="breed" type="text" ng-model="user.breed" placeholder="Any" ng-focus="showList();" ng-blur="hideList();">
 			<ul class="breed-list">
-				<li ng-repeat="breed in breeds | array | filter : { 'species' : 'Dog', 'name' : user.breed }" ng-click="getBreed();">{{ breed.name }}</li>
+				<li ng-repeat="breed in breeds | array | filter : { 'species' : 'Dog', 'name' : user.breed }" ng-click="getBreed($event);">{{ breed.name }}</li>
 			</ul>
 		</div>
 		<div class="styled-select select-age left">

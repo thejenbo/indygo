@@ -3,8 +3,11 @@
 	var resQ = angular.module('resQ', ['ngAnimate', 'ngSanitize', 'ui.router', 'ngStorage'])
 
 	.run( ['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
+		// Store current state and stateParams in rootScope
 	    $rootScope.$state = $state;
 	    $rootScope.$stateParams = $stateParams;
+
+	    // Store keys in object
 	    $rootScope.keys = Object.keys; 
 
 	    // Track current and previous states
@@ -15,7 +18,6 @@
 	        // Save the previous state in rootScope so that it's accessible from everywhere
 	        $rootScope.previousState = from;
 	        $rootScope.previousStateParams = fromParams;
-	        console.log('fromParams: ' + $rootScope.previousStateParams)
 	    });
 
 	    $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
@@ -24,7 +26,8 @@
 	    });
 	}])
 
-	.config(function($stateProvider, $locationProvider){
+	.config(function($stateProvider, $locationProvider, $urlRouterProvider){
+
 		$stateProvider
 		.state('home', {
 			url: '/',
@@ -95,6 +98,9 @@
 			resolve: {
 	            focusedDog: function (DogsService) {
 			        return DogsService.getDog();
+			    },
+			    focusedOrg: function (focusedDog, DogsService) {
+			        return DogsService.getOrg();
 			    }
 			}
 		})
@@ -105,8 +111,8 @@
 			}
 		})
 
-		//$locationProvider.html5Mode(true);
-    	//$locationProvider.hashPrefix('!');
+		$urlRouterProvider.otherwise("/");
+	    $locationProvider.html5Mode(true);
 
 
 	})
@@ -128,6 +134,7 @@
 				gender: $('select[name=gender]').val(),
 			};
 
+			// Go to results
 			$state.go('results.loading', {zipcode: $scope.user.zipcode, range: $scope.user.range, breed: $scope.user.breed, age: $scope.user.age, gender: $scope.user.gender})
 
 		}
@@ -135,31 +142,36 @@
 	})
 
 	.controller('ResultsCtrl', function($scope, $state, $timeout, $interval, dogResults) {
+		// Cancel loader interval
+		$interval.cancel(loadingDots);
+		
 		if (dogResults) {
 			$scope.dogResults = dogResults;
 
-			console.log(dogResults);
-
+			// Go to dog's profile on click
 			$scope.getDog = function($event) {
 				target = $event.currentTarget;
 				$scope.dogID = $(target).attr('ng-class');
 
-				$state.go('results.dog', {dogID: $scope.dogID})
+				$state.go('results.dog', {dogID: $scope.dogID});
 			}
 		}
 	})
 
 	.controller('LoadingCtrl', function($scope, $state, $location) {
+		// Go straight to results page
 		$state.go('results.list', {zipcode: $location.search().zipcode, range: $location.search().range, breed: $location.search().breed, age: $location.search().age, gender: $location.search().gender});
 	})
 
-	.controller('DogCtrl', function($scope, focusedDog) {
+	.controller('DogCtrl', function($scope, focusedDog, focusedOrg) {
+		// Bind org and dog objects to scope
 		$scope.focusedDog = focusedDog;
-		console.log($scope.focusedDog)
+		$scope.focusedOrg = focusedOrg;
 	})
 
 	.controller('MainCtrl', function($rootScope, $scope, $http, $timeout, $interval, $document, callAPI, $state, $location, $localStorage) {
 
+		// Get breed list for search page
 	    var breedParameters = {
 			'apikey'       : 'YwusOunb', 
 			'objectType'   : 'animalBreeds', 
@@ -172,6 +184,7 @@
 	    	$scope.breeds = response.data; 
 	    });
 
+	    // Go back to search or to dog list of saved
 		$scope.goBack = function($timeout){
 			if ($state.current.name == 'results.dog' && $rootScope.previousState.name) {
 				$state.go($rootScope.previousState, $rootScope.previousStateParams);
@@ -181,73 +194,22 @@
 			}
 		}
 
+		// Show list of breeds
 		$scope.showList = function() {
 			$('.breed-list').show();
 		}
 
+		// Hide list of breeds
 		$scope.hideList = function() {
 			$timeout(function(){
 				$('.breed-list').hide();
 			}, 100);
 		}
 
-		$scope.getBreed = function() {
-			breedChoice = angular.element(event.target).text();
+		// Get user's breed selection for form input
+		$scope.getBreed = function($event) {
+			breedChoice = angular.element($event.currentTarget).text();
 			$('input[name=breed]').val(breedChoice);
-		}
-
-		// $scope.viewDog = function() {
-
-		// 	dogTarget = angular.element($event.target);
-		// 	$scope.dogID = dogTarget.attr('ng-class');
-
-		// 	console.log('dogID: ' + dogTarget.attr('ng-class'));
-
-		// 	$state.go('results.list.dog', {dogID: $scope.dogID});
-
-		// }
-
-		// Show dog details
-		//$scope.expandDog = function() {
-			//reset dog photo
-			//currentPic = 0;
-	   		//$state.go('results.list.dog', {dogID: $scope.focusedDog.animalID});
-	   		// $('.img-wrap').isotope({
-	   		// 	itemSelector: '.dog-img'
-		    // });
-		    // $('.img-wrap').isotope('layout');
-		//}
-
-		// Navigate through dog images
-		$scope.changeImg = function() {
-			var picTarget = angular.element(event.target),
-				dogID = $(picTarget).siblings('.dog-img').attr('ng-class'),
-				dogTarget = $('.dog-img[ng-class="' + dogID + '"]'),
-				dogPics = $scope.dogs[dogID].animalPictures,
-				totalPics = $scope.dogs[dogID].animalPictures.length;
-
-			if (totalPics > 1) {
-				if ($(picTarget).hasClass('next')) {
-					if ( currentPic < (totalPics - 1) ) {
-						currentPic++;
-					} else {
-						currentPic = 0;
-					}
-				} else if ($(picTarget).hasClass('prev')) {
-					if ( currentPic == 0 ) {
-						currentPic = (totalPics - 1);
-					} else {
-						currentPic--;
-					}
-				}
-
-				$(dogTarget).attr('src', dogPics[currentPic].urlInsecureFullsize);
-
-				$(dogTarget).imagesLoaded(function() {
-					//$('#results-wrap').isotope('layout');
-				});
-
-			}
 		}
 
 	})
@@ -258,14 +220,9 @@
             if ($scope.$last) {
 
                 $('#results-wrap').imagesLoaded(function() {
-
-                	$('#loading-wrap').fadeOut(400);
-
-                	$timeout(function(){
+        			$timeout(function(){
 	                	$('#results-wrap').fadeIn(500);
-	                 	$interval.cancel(loadingDots);
-                	}, 700);
-
+	                }, 700);
                 });
             }
         };
@@ -378,7 +335,7 @@
 							'objectAction' : 'publicSearch',
 							'search' : { 
 								'resultStart'   : 0, 
-								'resultLimit'   : 100,
+								'resultLimit'   : 70,
 								'resultSort'    : 'animalLocationDistance', 
 								'calcFoundRows' : 'Yes',
 								'fields' : [
@@ -467,7 +424,8 @@
 							'animalPictures',
 							'animalGeneralAge',
 							'animalLocation',
-							'animalLocationState'
+							'animalLocationState',
+							'animalOrgID'
 						],
 						'filters' : [
 							{
@@ -479,15 +437,18 @@
 					}
 				},
 
-				target = 'https://api.rescuegroups.org/http/json/?callback=JSON_CALLBACK&data=' + angular.toJson(dogParameters);
+				dogTarget = 'https://api.rescuegroups.org/http/json/?callback=JSON_CALLBACK&data=' + angular.toJson(dogParameters);
 
-				return $http.jsonp(target)
+				return $http.jsonp(dogTarget)
 					.then(function(response) {
 						
 						// Catch undefined response from API
 						if (!response.data.data[$rootScope.dogID]) {
 							response.data.data[$rootScope.dogID] = {};
 						} 
+
+						// Set organization ID
+						$rootScope.orgID = response.data.data[$rootScope.dogID].animalOrgID;
 
 						// Let that singular dog out
 						return response.data.data[$rootScope.dogID];
@@ -500,7 +461,7 @@
 
 			getOrg : function() {
 
-				dogTarget = angular.element(event.target);
+				console.log('orgId: ' + $rootScope.orgID);
 
 				// Data to receive about dog's organization
 				var orgParameters = {
@@ -525,18 +486,28 @@
 							{
 								'fieldName'  : 'orgID', 
 								'operation'  : 'equals', 
-								'criteria'   : orgID
+								'criteria'   : $rootScope.orgID
 							}
 						]
 					}
 				},
 
-				target = 'https://api.rescuegroups.org/http/json/?callback=JSON_CALLBACK&data=' + angular.toJson(orgParameters);
+				orgTarget = 'https://api.rescuegroups.org/http/json/?callback=JSON_CALLBACK&data=' + angular.toJson(orgParameters);
 
-				return $http.jsonp(target)
+				return $http.jsonp(orgTarget)
 					.then(function(response) {
-						//console.log(response.data.data[orgID]);
-						return response.data.data[orgID];
+						
+						// Catch undefined response from API
+						if (!response.data.data[$rootScope.orgID]) {
+							response.data.data[$rootScope.orgID] = {};
+						} 
+
+						// Let that singular org out
+						return response.data.data[$rootScope.orgID];
+
+				    }, function(response) {
+				    	// Go to error page
+				    	$state.go('error');
 				    });
 
 			}

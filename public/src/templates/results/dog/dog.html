@@ -1,38 +1,35 @@
 <div id="focused-dog" class="animate-push-right">
 
 	<div ng-if="keys(focusedDog).length" class="focused-wrap">
-		<!-- <h3 class="dog-name">{{ focusedDog.animalName }}</h3>
-		<p class="dog-info">{{ focusedDog.animalGeneralAge }} {{ focusedDog.animalSex }} {{ focusedDog.animalBreed }}</p> -->
-		<div class="img-wrap">
-			<img class="dog-img" ng-class="{{ focusedDog.animalID }}" ng-src="{{ focusedDog.animalPictures[0].urlInsecureFullsize }}">
-			<div id="img-nav" ng-show="focusedDog.animalPictures.length > 1">
-				<div class="nav-dot" ng-repeat="picture in pictures"></div>
+		<div class="left">
+			<div class="img-wrap">
+				<img class="dog-img" ng-class="{{ focusedDog.animalID }}" ng-src="{{ focusedDog.animalPictures[0].urlInsecureFullsize }}">
+			</div>
+			<div class="dog-info">
+				<h5>{{ focusedDog.animalName }}</h5>
+				<div class="span-group">
+					<span ng-show="focusedDog.animalGeneralAge" class="age">{{focusedDog.animalGeneralAge}}</span>
+					<span ng-show="focusedDog.animalSex" class="sex">{{focusedDog.animalSex}}</span>
+					<span ng-show="focusedOrg.orgCity" class="location">{{ focusedOrg.orgCity }}</span>
+				</div>
 			</div>
 		</div>
 
-		<div class="dog-details" ng-if="focusedDog.animalDescription">
-			<h3>{{ focusedDog.animalName }}</h3>
-			<h5 ng-show="focusedDog.animalGeneralAge" class="age">age: {{focusedDog.animalGeneralAge}}</h5>
-			<h5 ng-show="focusedDog.animalSex" class="sex">m/f: {{focusedDog.animalSex}}</h5>
-			<h5 class="breed">breed: {{ focusedDog.animalBreed }}</h5>
-			<div class="dog-description" ng-bind-html="focusedDog.animalDescription"></div>
+		<div class="right">
+			<span>about</span>
+			<div class="details dog-details" ng-if="focusedDog.animalDescription">
+				<div class="dog-description" ng-bind-html="focusedDog.animalDescription"></div>
+			</div>
+			<span>rescue details</span>
+			<div class="details org-details">
+				<h5>{{ focusedOrg.orgName }}</h5>
+				<span ng-show="focusedOrg.orgAddress" class="address">{{ focusedOrg.orgAddress }} {{ focusedOrg.orgCity }}, {{ focusedOrg.orgState }} {{ focusedOrg.orgPostalCode }}</span>
+				<span ng-show="focusedOrg.orgPhone" class="phone">{{ focusedOrg.orgPhone }}</span>
+				<span ng-show="focusedOrg.orgEmail" class="email">{{ focusedOrg.orgEmail }}</span>
+				<span ng-show="focusedOrg.orgWebsiteUrl" class="website"><a target="_blank" href="{{ focusedOrg.orgWebsiteUrl }}">{{ focusedOrg.orgWebsiteUrl }}</a></span>
+			</div>
 		</div>
-		<!-- <div class="rescue-wrap">
-			<h3 class="org-name">{{ focusedOrg.orgName }}</h3>
-			<div class="org-location">
-				<p>{{ focusedOrg.orgAddress }}<br/>
-				{{ focusedOrg.orgCity }}, {{ focusedOrg.orgState }} {{ focusedOrg.orgPostalCode }}</p>
-			</div>
-			<div class="org-contact">
-				<p>
-					{{ focusedOrg.orgPhone }}<br/>
-					{{ focusedOrg.orgEmail }}
-				</p>
-				<a class="org-website" ng-href="{{ focusedOrg.orgWebsiteUrl }}">
-					{{ focusedOrg.orgWebsiteUrl }}
-				</a>
-			</div>
-		</div> -->
+
 	</div>
 
 	<div ng-if="!keys(focusedDog).length" class="not-found">

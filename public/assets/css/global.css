@@ -15,7 +15,7 @@ section {
 
 h1 {
   color: #000;
-  font: 700 5.625em "Damion", sans-serif; }
+  font: 100 5.625em "Quicksand", sans-serif; }
 
 h2 {
   color: #000;
@@ -50,7 +50,6 @@ form .styled-select, form .styled-input {
   form .styled-select input, form .styled-select select, form .styled-input input, form .styled-input select {
     background: transparent;
     border: 1px solid #000;
-    color: #000;
     font: 1.25em "Quicksand", sans-serif;
     height: 60px;
     text-indent: 10px; }
@@ -64,6 +63,8 @@ form .styled-select, form .styled-input {
     background-size: 35px 35px;
     border-radius: 0;
     width: 90%; }
+  form .styled-select option, form .styled-input option {
+    background: #FFF; }
   form .styled-select input, form .styled-input input {
     clear: both;
     float: left;
@@ -106,7 +107,10 @@ body {
   transition: all 500ms linear;
   background: #000 url("../../assets/img/car-ride-bg.jpg");
   background-attachment: fixed;
-  background-size: cover; }
+  background-size: cover;
+  font-size: 100%;
+  min-height: 100%;
+  width: 100%; }
   body[state="results.list"], body[state="results.dog"], body[state="results.loading"] {
     background: #FFF; }
     body[state="results.list"] header button, body[state="results.dog"] header button, body[state="results.loading"] header button {
@@ -181,6 +185,7 @@ section#main section#search {
         background: #FFF;
         border-bottom: 1px solid #000;
         color: #000;
+        cursor: pointer;
         font: 0.875em "Quicksand";
         list-style: none;
         padding: 10px 5px;
@@ -207,6 +212,7 @@ section#main section#search {
         left: -3px; }
 
 section#main section#results {
+  overflow: hidden;
   top: 70px; }
   section#main section#results button {
     border: none;
@@ -238,7 +244,11 @@ section#main section#results {
     section#main section#results #dog-results #results-wrap {
       display: none;
       -webkit-column-count: 4;
-      -webkit-column-gap: 2%; }
+      -webkit-column-gap: 2%;
+      -moz-column-count: 4;
+      -moz-column-gap: 2%;
+      column-count: 4;
+      column-gap: 2%; }
       section#main section#results #dog-results #results-wrap *, section#main section#results #dog-results #results-wrap *:before, section#main section#results #dog-results #results-wrap *:after {
         box-sizing: border-box; }
       section#main section#results #dog-results #results-wrap .dog-container {
@@ -267,51 +277,18 @@ section#main section#results {
             background: #000;
             background: rgba(0, 0, 0, 0.8);
             min-width: 100%;
+            opacity: 0;
             position: absolute;
-            top: 100%;
+            top: 0;
             left: 0;
             right: 0;
             bottom: 0; }
-            section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info h3, section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info span {
-              color: #FFF;
-              font: 1.75em "Quicksand";
-              margin: 0;
-              text-align: center; }
             section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info h3 {
-              border-bottom: 2px solid #FFF;
-              margin-top: 20px;
-              padding-bottom: 5px; }
-            section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info span {
-              display: block;
-              font-size: 1.5625em;
-              margin-top: 10px; }
-              section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info span.dog-sex::before {
-                content: "";
-                display: inline-block;
-                height: 27px;
-                margin-right: 7px;
-                position: relative;
-                top: 2px;
-                width: 28px; }
-              section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info span.dog-sex.female::before {
-                background: url("../../assets/img/sex-female.svg");
-                width: 19px; }
-              section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info span.dog-sex.male::before {
-                background: url("../../assets/img/sex-male.svg");
-                width: 28px; }
-              section#main section#results #dog-results #results-wrap .dog-container .img-wrap .dog-info span.dog-location::before {
-                background: url("../../assets/img/location-pin.svg");
-                content: "";
-                display: inline-block;
-                height: 27px;
-                margin-right: 7px;
-                width: 16px;
-                position: relative;
-                top: 2px; }
+              color: #FFF;
+              font: 2em "Quicksand"; }
         section#main section#results #dog-results #results-wrap .dog-container:hover .img-wrap .dog-info {
-          top: 0; }
+          opacity: 1; }
   section#main section#results #focused-dog {
-    border: 5px solid #000;
     overflow: hidden;
     margin: 0 auto 60px;
     max-width: 1100px;
@@ -320,28 +297,130 @@ section#main section#results {
     right: 0;
     padding: 30px;
     width: 90%; }
-    section#main section#results #focused-dog .img-wrap {
+    section#main section#results #focused-dog .left {
       float: left;
-      max-width: 37%;
-      width: 100%; }
-      section#main section#results #focused-dog .img-wrap img {
-        max-height: 500px;
+      width: 37%; }
+      section#main section#results #focused-dog .left .img-wrap {
+        margin-top: 10px;
+        max-height: 380px;
+        overflow: hidden;
         width: 100%; }
-    section#main section#results #focused-dog .dog-details {
+        section#main section#results #focused-dog .left .img-wrap img {
+          width: 100%; }
+      section#main section#results #focused-dog .left .dog-info .span-group {
+        text-align: center; }
+        section#main section#results #focused-dog .left .dog-info .span-group span {
+          color: #000;
+          font: 1.375em "Quicksand";
+          text-transform: lowercase; }
+          section#main section#results #focused-dog .left .dog-info .span-group span:nth-child(2)::before, section#main section#results #focused-dog .left .dog-info .span-group span:nth-child(3)::before {
+            content: "\2022";
+            display: inline-block;
+            height: 27px;
+            margin-right: 7px;
+            position: relative;
+            width: 27px; }
+      section#main section#results #focused-dog .left .dog-info h5 {
+        font-size: 2.8125em;
+        margin: 10px 0;
+        text-align: center; }
+    section#main section#results #focused-dog .right {
       float: right;
       margin-left: 2%;
       width: 57%; }
-      section#main section#results #focused-dog .dog-details h3 {
+      section#main section#results #focused-dog .right span {
         color: #000;
-        font: bold 3.125em "Quicksand";
-        margin: 0 0 10px 0;
-        text-align: left; }
-      section#main section#results #focused-dog .dog-details h5 {
-        margin: 0 0 10px 0; }
-      section#main section#results #focused-dog .dog-details .dog-description {
-        font: 1em "Quicksand" !important;
-        height: 200px;
-        overflow-y: scroll; }
+        font: 1.125em "Quicksand";
+        text-transform: lowercase; }
+      section#main section#results #focused-dog .right .details {
+        border: 1px solid #000;
+        padding: 2%; }
+        section#main section#results #focused-dog .right .details h5 {
+          font-size: 1.5em;
+          margin: 0;
+          text-align: center; }
+        section#main section#results #focused-dog .right .details span {
+          display: block;
+          margin: 2px 0; }
+          section#main section#results #focused-dog .right .details span a {
+            color: #000; }
+          section#main section#results #focused-dog .right .details span::before {
+            content: "";
+            display: inline-block;
+            height: 27px;
+            margin-right: 7px;
+            position: relative;
+            top: 9px;
+            width: 27px; }
+          section#main section#results #focused-dog .right .details span.address::before {
+            background: url("../../assets/img/location-pin.svg") no-repeat; }
+          section#main section#results #focused-dog .right .details span.phone::before {
+            background: url("../../assets/img/smart-phone.svg") no-repeat; }
+          section#main section#results #focused-dog .right .details span.email::before {
+            background: url("../../assets/img/envelope.svg") no-repeat; }
+          section#main section#results #focused-dog .right .details span.website::before {
+            background: url("../../assets/img/browser-window.svg") no-repeat; }
+        section#main section#results #focused-dog .right .details.dog-details {
+          margin-bottom: 20px; }
+          section#main section#results #focused-dog .right .details.dog-details .dog-description {
+            max-height: 260px;
+            overflow-y: scroll; }
+            section#main section#results #focused-dog .right .details.dog-details .dog-description * {
+              color: #000 !important;
+              font: 100 1em "Quicksand" !important; }
+
+@media (max-width: 960px) {
+  body {
+    background-image: url("../../assets/img/car-ride-bg-mobile.jpg");
+    background-position: center bottom;
+    font-size: 70%;
+    min-width: 400px; }
+    body[state="home"] header, body[state="search"] header {
+      margin: auto;
+      width: 90%; }
+      body[state="home"] header a, body[state="search"] header a {
+        margin-left: 0; }
+  section#main {
+    margin: auto;
+    width: 90%; }
+    section#main button {
+      width: 190px; }
+    section#main section#start-search {
+      padding: 0;
+      width: 100%; }
+    section#main section#search {
+      padding: 0; }
+      section#main section#search form {
+        max-width: 500px;
+        padding: 0;
+        width: 100%; }
+        section#main section#search form .styled-input, section#main section#search form .styled-select {
+          float: left;
+          width: 48%; }
+          section#main section#search form .styled-input.styled-select, section#main section#search form .styled-select.styled-select {
+            background-size: 70%;
+            margin-left: 2%; }
+          section#main section#search form .styled-input input, section#main section#search form .styled-input input[name=breed], section#main section#search form .styled-input select, section#main section#search form .styled-select input, section#main section#search form .styled-select input[name=breed], section#main section#search form .styled-select select {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 100%; }
+          section#main section#search form .styled-input.select-age, section#main section#search form .styled-input.select-gender, section#main section#search form .styled-select.select-age, section#main section#search form .styled-select.select-gender {
+            width: 22%; }
+        section#main section#search form button {
+          width: 48%; }
+    section#main section#results {
+      top: 20px; }
+      section#main section#results #dog-results #results-wrap {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2; }
+      section#main section#results #focused-dog {
+        padding-top: 0;
+        top: 0; }
+        section#main section#results #focused-dog .left, section#main section#results #focused-dog .right {
+          float: none;
+          width: 100%; } }
 
 section#main section {
   position: absolute; }
