@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "watches": {
-    "build-js": "public/src/js/modules.js",
+    "build-includes": "public/src/js/modules.js",
+    "build-js": "public/src/js/components/*.js public/src/templates/*/*.js public/src/templates/list/*/*.js",
     "build-css": "public/src/style/scss/**"
   },
   "scripts": {
     "preview": "live-server",
     "build-css": "node-sass public/src/style/scss/global.scss -o public/assets/css/",
-    "build-js": "browserify public/src/js/modules.js > public/src/js/common.js",
+    "build-includes": "browserify public/src/js/modules.js > public/src/js/common.js",
+    "build-js": "uglifyjs public/src/js/components/*.js public/src/templates/*/*.js public/src/templates/results/*/*.js > public/src/js/app.min.js",
     "watch": "rerun-script"
   },
   "author": "jenbo",

@@ -48,6 +48,9 @@ form .styled-select, form .styled-input {
     float: left;
     font: 1.25em "Quicksand", sans-serif; }
   form .styled-select input, form .styled-select select, form .styled-input input, form .styled-input select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
     background: transparent;
     border: 1px solid #000;
     font: 1.25em "Quicksand", sans-serif;
@@ -56,9 +59,6 @@ form .styled-select, form .styled-input {
     form .styled-select input:focus, form .styled-select select:focus, form .styled-input input:focus, form .styled-input select:focus {
       outline: none; }
   form .styled-select select, form .styled-input select {
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
     background: url("../img/arrow.svg") no-repeat 90% center;
     background-size: 35px 35px;
     border-radius: 0;
@@ -168,9 +168,13 @@ section#main section#search {
   padding: 0 30px 0 60px; }
   section#main section#search form {
     width: 555px; }
-    section#main section#search form .styled-select input[name=breed], section#main section#search form .styled-input input[name=breed] {
-      margin-right: 20px;
-      width: 220px; }
+    section#main section#search form .styled-select input, section#main section#search form .styled-input input {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px; }
+      section#main section#search form .styled-select input[name=breed], section#main section#search form .styled-input input[name=breed] {
+        margin-right: 20px;
+        width: 220px; }
     section#main section#search form .styled-select ul.breed-list, section#main section#search form .styled-input ul.breed-list {
       display: none;
       height: 190px;
@@ -373,42 +377,44 @@ section#main section#results {
   body {
     background-image: url("../../assets/img/car-ride-bg-mobile.jpg");
     background-position: center bottom;
-    font-size: 70%;
-    min-width: 400px; }
+    font-size: 70%; }
     body[state="home"] header, body[state="search"] header {
       margin: auto;
+      padding: 0;
       width: 90%; }
       body[state="home"] header a, body[state="search"] header a {
         margin-left: 0; }
   section#main {
-    margin: auto;
+    margin: 0 auto;
     width: 90%; }
     section#main button {
       width: 190px; }
-    section#main section#start-search {
+    section#main section#start-search, section#main section#search {
+      margin: auto;
       padding: 0;
       width: 100%; }
-    section#main section#search {
-      padding: 0; }
-      section#main section#search form {
-        max-width: 500px;
-        padding: 0;
-        width: 100%; }
-        section#main section#search form .styled-input, section#main section#search form .styled-select {
-          float: left;
-          width: 48%; }
-          section#main section#search form .styled-input.styled-select, section#main section#search form .styled-select.styled-select {
-            background-size: 70%;
-            margin-left: 2%; }
-          section#main section#search form .styled-input input, section#main section#search form .styled-input input[name=breed], section#main section#search form .styled-input select, section#main section#search form .styled-select input, section#main section#search form .styled-select input[name=breed], section#main section#search form .styled-select select {
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            width: 100%; }
-          section#main section#search form .styled-input.select-age, section#main section#search form .styled-input.select-gender, section#main section#search form .styled-select.select-age, section#main section#search form .styled-select.select-gender {
-            width: 22%; }
-        section#main section#search form button {
-          width: 48%; }
+    section#main section#search form {
+      margin: auto;
+      width: 100%; }
+      section#main section#search form .styled-input, section#main section#search form .styled-select {
+        float: left;
+        width: 48%; }
+        section#main section#search form .styled-input.styled-select, section#main section#search form .styled-select.styled-select {
+          margin-left: 2%; }
+          section#main section#search form .styled-input.styled-select select, section#main section#search form .styled-select.styled-select select {
+            background-size: 17px 17px; }
+        section#main section#search form .styled-input input, section#main section#search form .styled-input input[name=breed], section#main section#search form .styled-input select, section#main section#search form .styled-select input, section#main section#search form .styled-select input[name=breed], section#main section#search form .styled-select select {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          width: 100%; }
+        section#main section#search form .styled-input.select-age, section#main section#search form .styled-input.select-gender, section#main section#search form .styled-select.select-age, section#main section#search form .styled-select.select-gender {
+          margin-right: 0;
+          width: 22%; }
+        section#main section#search form .styled-input.select-age, section#main section#search form .styled-select.select-age {
+          margin-right: 0; }
+      section#main section#search form button {
+        width: 48%; }
     section#main section#results {
       top: 20px; }
       section#main section#results #dog-results #results-wrap {
@@ -416,11 +422,12 @@ section#main section#results {
         -moz-column-count: 2;
         column-count: 2; }
       section#main section#results #focused-dog {
-        padding-top: 0;
+        padding: 0;
         top: 0; }
         section#main section#results #focused-dog .left, section#main section#results #focused-dog .right {
           float: none;
-          width: 100%; } }
+          margin: auto;
+          width: 95%; } }
 
 section#main section {
   position: absolute; }

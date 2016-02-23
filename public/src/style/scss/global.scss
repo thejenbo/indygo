@@ -91,9 +91,12 @@ section#main {
 		form {
 			width: 555px;
 			.styled-select, .styled-input {
-				input[name=breed] {
-					margin-right: 20px;
-					width: 220px;
+				input {
+					@include rounded(0);
+					&[name=breed] {
+						margin-right: 20px;
+						width: 220px;
+					}
 				}
 				ul.breed-list {
 					display: none;
@@ -368,10 +371,10 @@ section#main {
 		background-image: url('../../assets/img/car-ride-bg-mobile.jpg');
 		background-position: center bottom;
 		font-size: 70%;
-		min-width: 400px;
 		&[state="home"], &[state="search"] {
 			header {
 				margin: auto;
+				padding: 0;
 				width: 90%;
 				a {
 					margin-left: 0;
@@ -380,34 +383,39 @@ section#main {
 		}
 	}
 	section#main {
-		margin: auto;
+		margin: 0 auto;
 		width: 90%;
 		button {
 			width: 190px;
 		}
-		section#start-search {
+		section#start-search, section#search {
+			margin: auto;
 			padding: 0;
 			width: 100%;
 		}
 		section#search {
-			padding: 0;
 			form {
-				max-width: 500px;
-				padding: 0;
+				margin: auto;
 				width: 100%;
 				.styled-input, .styled-select {
 					float: left;
 					width: 48%;
 					&.styled-select {
-						background-size: 70%;
 						margin-left: 2%;
+						select {
+							background-size: 17px 17px;
+						}
 					}
 					input, input[name=breed], select {
 						@include box-sizing(border-box);
 						width: 100%;
 					}
 					&.select-age, &.select-gender {
+						margin-right: 0;
 						width: 22%;
+					}
+					&.select-age {
+						margin-right: 0;
 					}
 				}
 				button {
@@ -425,11 +433,12 @@ section#main {
 	    		}
 	    	}
 	    	#focused-dog {
-	    		padding-top: 0;
+	    		padding: 0;
 	    		top: 0;
 	    		.left, .right {
 	    			float: none;
-	    			width: 100%;
+	    			margin: auto;
+	    			width: 95%;
 	    		}
 	    	}
 		}
